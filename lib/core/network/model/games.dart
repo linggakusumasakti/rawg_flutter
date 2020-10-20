@@ -29,7 +29,10 @@ class Games extends Equatable {
   @JsonKey(name: 'background_image')
   final String backgroundImage;
 
-  Games(this.id, this.name, this.backgroundImage);
+  @JsonKey(name: 'metacritic')
+  final int metacritic;
+
+  Games(this.id, this.name, this.backgroundImage, this.metacritic);
 
   @override
   List<Object> get props => [id, name, backgroundImage];

@@ -37,25 +37,42 @@ class HomeScreen extends StatelessWidget {
                             imageUrl: games.backgroundImage,
                           ),
                         )),
-                        Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: <Widget>[
-                            Align(
-                              alignment: Alignment.centerLeft,
-                              child: Container(
-                                margin: EdgeInsets.symmetric(
-                                    vertical: 8, horizontal: 16),
+                        Container(
+                          margin:
+                              EdgeInsets.symmetric(vertical: 8, horizontal: 16),
+                          child: Row(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: <Widget>[
+                              Container(
                                 child: Text(
                                   games.name,
+                                  overflow: TextOverflow.ellipsis,
+                                  maxLines: 1,
+                                  textAlign: TextAlign.start,
                                   style: TextStyle(
                                       fontFamily: 'Roboto',
                                       fontSize: 20,
                                       fontWeight: FontWeight.bold),
                                 ),
+                                width: MediaQuery.of(context).size.width * 0.7,
                               ),
-                            )
-                          ],
-                        )
+                              Spacer(),
+                              Container(
+                                padding: EdgeInsets.all(4),
+                                decoration: BoxDecoration(
+                                    border: Border.all(color: Colors.green)),
+                                child: Text(
+                                  games.metacritic.toString(),
+                                  textAlign: TextAlign.end,
+                                  style: TextStyle(
+                                      fontFamily: 'Roboto',
+                                      fontSize: 16,
+                                      color: Colors.green),
+                                ),
+                              )
+                            ],
+                          ),
+                        ),
                       ],
                     ),
                   );

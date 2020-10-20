@@ -24,6 +24,7 @@ Games _$GamesFromJson(Map<String, dynamic> json) {
     json['id'] as int,
     json['name'] as String,
     json['background_image'] as String,
+    json['metacritic'] as int,
   );
 }
 
@@ -31,4 +32,5 @@ Map<String, dynamic> _$GamesToJson(Games instance) => <String, dynamic>{
       'id': instance.id,
       'name': instance.name,
       'background_image': instance.backgroundImage,
+      'metacritic': instance.metacritic,
     };
