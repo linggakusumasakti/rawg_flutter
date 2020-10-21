@@ -29,3 +29,6 @@ flutter:
     - family: Roboto
       fonts:
         - asset: assets/fonts/Roboto-Black.ttf
+
+  assets:
+    - images/

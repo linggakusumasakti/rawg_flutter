@@ -1,6 +1,5 @@
 import 'package:equatable/equatable.dart';
-import 'package:rawg_flutter/core/network/model/games.dart';
-
+import 'package:rawg_flutter/core/network/model/results.dart';
 
 abstract class GamesState extends Equatable {
   const GamesState();

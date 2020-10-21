@@ -1,5 +1,5 @@
 import 'package:flutter/cupertino.dart';
-import 'package:rawg_flutter/core/network/model/games.dart';
+import 'package:rawg_flutter/core/network/model/results.dart';
 import 'package:rawg_flutter/core/network/repository/remote/api_repository.dart';
 import 'package:rawg_flutter/core/network/repository/repository.dart';
 

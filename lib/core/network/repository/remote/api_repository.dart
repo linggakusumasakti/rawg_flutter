@@ -1,6 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:rawg_flutter/core/network/api/rest_client.dart';
-import 'package:rawg_flutter/core/network/model/games.dart';
+import 'package:rawg_flutter/core/network/model/results.dart';
 
 import '../repository.dart';
 

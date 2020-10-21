@@ -1,22 +1,8 @@
 import 'package:equatable/equatable.dart';
 import 'package:json_annotation/json_annotation.dart';
+import 'package:rawg_flutter/core/network/model/parent_platform.dart';
 
 part 'games.g.dart';
-
-@JsonSerializable()
-class Result extends Equatable {
-  @JsonKey(name: 'results')
-  final List<Games> results;
-
-  const Result([this.results = const []]);
-
-  @override
-  List<Object> get props => [results];
-
-  factory Result.fromJson(Map<String, dynamic> json) => _$ResultFromJson(json);
-
-  Map<String, dynamic> toJson() => _$ResultToJson(this);
-}
 
 @JsonSerializable()
 class Games extends Equatable {
@@ -32,7 +18,11 @@ class Games extends Equatable {
   @JsonKey(name: 'metacritic')
   final int metacritic;
 
-  Games(this.id, this.name, this.backgroundImage, this.metacritic);
+  @JsonKey(name: 'parent_platforms')
+  final List<ParentPlatform> parentPlatform;
+
+  Games(
+      this.id, this.name, this.backgroundImage, this.metacritic, this.parentPlatform);
 
   @override
   List<Object> get props => [id, name, backgroundImage];

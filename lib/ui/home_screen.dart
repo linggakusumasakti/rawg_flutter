@@ -6,6 +6,7 @@ import 'package:rawg_flutter/core/bloc/games/bloc.dart';
 import 'package:rawg_flutter/core/bloc/games/games_bloc.dart';
 import 'package:rawg_flutter/core/bloc/games/games_state.dart';
 import 'package:rawg_flutter/core/network/model/games.dart';
+import 'package:rawg_flutter/core/network/model/parent_platform.dart';
 import 'package:rawg_flutter/utils/widget/loading_indicator.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -24,10 +25,12 @@ class HomeScreen extends StatelessWidget {
                 itemBuilder: (BuildContext context, int index) {
                   Games games = state.result.results[index];
                   return Card(
+                    color: Colors.grey.withOpacity(0.2),
                     margin: EdgeInsets.all(8),
                     shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(20)),
                     child: Column(
+                      mainAxisSize: MainAxisSize.max,
                       children: <Widget>[
                         Container(
                             child: ClipRRect(
@@ -37,6 +40,28 @@ class HomeScreen extends StatelessWidget {
                             imageUrl: games.backgroundImage,
                           ),
                         )),
+                        Container(
+                            height: 20,
+                            margin: EdgeInsets.symmetric(
+                                vertical: 8, horizontal: 16),
+                            child: Align(
+                              alignment: Alignment.topLeft,
+                              child: ListView.builder(
+                                  scrollDirection: Axis.horizontal,
+                                  shrinkWrap: true,
+                                  itemCount: games.parentPlatform.length,
+                                  itemBuilder:
+                                      (BuildContext context, int index) {
+                                    ParentPlatform parentPlatform =
+                                        games.parentPlatform[index];
+                                    return Container(
+                                        margin: EdgeInsets.symmetric(
+                                            vertical: 0, horizontal: 2),
+                                        child: Image.asset(
+                                          parentPlatform.platform.getImage(),height: 50,width: 17,
+                                        ));
+                                  }),
+                            )),
                         Container(
                           margin:
                               EdgeInsets.symmetric(vertical: 8, horizontal: 16),
