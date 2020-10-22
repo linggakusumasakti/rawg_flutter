@@ -41,30 +41,52 @@ class HomeScreen extends StatelessWidget {
                           ),
                         )),
                         Container(
-                            height: 20,
+                            height: 40,
                             margin: EdgeInsets.symmetric(
-                                vertical: 8, horizontal: 16),
-                            child: Align(
-                              alignment: Alignment.topLeft,
-                              child: ListView.builder(
-                                  scrollDirection: Axis.horizontal,
-                                  shrinkWrap: true,
-                                  itemCount: games.parentPlatform.length,
-                                  itemBuilder:
-                                      (BuildContext context, int index) {
-                                    ParentPlatform parentPlatform =
-                                        games.parentPlatform[index];
-                                    return Container(
-                                        margin: EdgeInsets.symmetric(
-                                            vertical: 0, horizontal: 2),
-                                        child: Image.asset(
-                                          parentPlatform.platform.getImage(),height: 50,width: 17,
-                                        ));
-                                  }),
+                                vertical: 4, horizontal: 16),
+                            child: Row(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: <Widget>[
+                                Align(
+                                  alignment: Alignment.topLeft,
+                                  child: ListView.builder(
+                                      scrollDirection: Axis.horizontal,
+                                      shrinkWrap: true,
+                                      itemCount: games.parentPlatform.length,
+                                      itemBuilder:
+                                          (BuildContext context, int index) {
+                                        ParentPlatform parentPlatform =
+                                            games.parentPlatform[index];
+                                        return Container(
+                                            margin: EdgeInsets.symmetric(
+                                                vertical: 0, horizontal: 2),
+                                            child: Image.asset(
+                                              parentPlatform.platform
+                                                  .getImage(),
+                                              width: 15,
+                                            ));
+                                      }),
+                                ),
+                                Spacer(),
+                                Container(
+                                  padding: EdgeInsets.all(4),
+                                  decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(5),
+                                      border: Border.all(color: Colors.green)),
+                                  child: Text(
+                                    games.metacritic.toString(),
+                                    textAlign: TextAlign.end,
+                                    style: TextStyle(
+                                        fontFamily: 'Roboto',
+                                        fontSize: 16,
+                                        color: Colors.green),
+                                  ),
+                                )
+                              ],
                             )),
                         Container(
                           margin:
-                              EdgeInsets.symmetric(vertical: 8, horizontal: 16),
+                              EdgeInsets.symmetric(vertical: 0, horizontal: 16),
                           child: Row(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: <Widget>[
@@ -79,25 +101,35 @@ class HomeScreen extends StatelessWidget {
                                       fontSize: 20,
                                       fontWeight: FontWeight.bold),
                                 ),
-                                width: MediaQuery.of(context).size.width * 0.7,
                               ),
-                              Spacer(),
-                              Container(
-                                padding: EdgeInsets.all(4),
-                                decoration: BoxDecoration(
-                                    border: Border.all(color: Colors.green)),
-                                child: Text(
-                                  games.metacritic.toString(),
-                                  textAlign: TextAlign.end,
-                                  style: TextStyle(
-                                      fontFamily: 'Roboto',
-                                      fontSize: 16,
-                                      color: Colors.green),
-                                ),
-                              )
                             ],
                           ),
                         ),
+                        Container(
+                          margin: EdgeInsets.only(left: 16, right: 16, top: 8),
+                          child: Row(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: <Widget>[
+                              Text(
+                                'Release Date : ',
+                                style: TextStyle(
+                                  fontSize: 13,
+                                  color: Colors.grey,
+                                ),
+                              ),
+                              Spacer(),
+                              Text(games.getDate(),
+                                  style: TextStyle(
+                                    fontSize: 13,
+                                  ))
+                            ],
+                          ),
+                        ),
+                        Container(
+                          margin:
+                              EdgeInsets.symmetric(vertical: 0, horizontal: 16),
+                          child: Divider(color: Colors.grey),
+                        )
                       ],
                     ),
                   );

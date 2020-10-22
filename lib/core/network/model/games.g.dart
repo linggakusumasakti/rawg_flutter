@@ -17,6 +17,7 @@ Games _$GamesFromJson(Map<String, dynamic> json) {
             ? null
             : ParentPlatform.fromJson(e as Map<String, dynamic>))
         ?.toList(),
+    json['released'] as String,
   );
 }
 
@@ -25,5 +26,6 @@ Map<String, dynamic> _$GamesToJson(Games instance) => <String, dynamic>{
       'name': instance.name,
       'background_image': instance.backgroundImage,
       'metacritic': instance.metacritic,
+      'released': instance.released,
       'parent_platforms': instance.parentPlatform,
     };
