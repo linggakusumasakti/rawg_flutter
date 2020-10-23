@@ -168,7 +168,8 @@ class HomeScreen extends StatelessWidget {
                           ),
                         ),
                         Container(
-                          margin: EdgeInsets.symmetric(horizontal: 16),
+                          margin: EdgeInsets.only(
+                              left: 16, right: 16, top: 0, bottom: 8),
                           child: Divider(color: Colors.grey),
                         ),
                       ],
