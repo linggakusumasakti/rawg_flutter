@@ -18,6 +18,10 @@ Games _$GamesFromJson(Map<String, dynamic> json) {
             : ParentPlatform.fromJson(e as Map<String, dynamic>))
         ?.toList(),
     json['released'] as String,
+    (json['genres'] as List)
+        ?.map((e) =>
+            e == null ? null : Genres.fromJson(e as Map<String, dynamic>))
+        ?.toList(),
   );
 }
 
@@ -28,4 +32,5 @@ Map<String, dynamic> _$GamesToJson(Games instance) => <String, dynamic>{
       'metacritic': instance.metacritic,
       'released': instance.released,
       'parent_platforms': instance.parentPlatform,
+      'genres': instance.genres,
     };

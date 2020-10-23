@@ -1,6 +1,7 @@
 import 'package:equatable/equatable.dart';
 import 'package:intl/intl.dart';
 import 'package:json_annotation/json_annotation.dart';
+import 'package:rawg_flutter/core/network/model/genres.dart';
 import 'package:rawg_flutter/core/network/model/parent_platform.dart';
 
 part 'games.g.dart';
@@ -25,6 +26,9 @@ class Games extends Equatable {
   @JsonKey(name: 'parent_platforms')
   final List<ParentPlatform> parentPlatform;
 
+  @JsonKey(name: 'genres')
+  final List<Genres> genres;
+
   String getDate() {
     DateFormat dateFormat = DateFormat('MMM dd, yyyy');
     DateTime dateTime = DateTime.parse(released);
@@ -32,7 +36,7 @@ class Games extends Equatable {
   }
 
   Games(this.id, this.name, this.backgroundImage, this.metacritic,
-      this.parentPlatform, this.released);
+      this.parentPlatform, this.released, this.genres);
 
   @override
   List<Object> get props => [id, name, backgroundImage];

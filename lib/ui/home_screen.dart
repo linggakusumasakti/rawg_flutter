@@ -6,6 +6,7 @@ import 'package:rawg_flutter/core/bloc/games/bloc.dart';
 import 'package:rawg_flutter/core/bloc/games/games_bloc.dart';
 import 'package:rawg_flutter/core/bloc/games/games_state.dart';
 import 'package:rawg_flutter/core/network/model/games.dart';
+import 'package:rawg_flutter/core/network/model/genres.dart';
 import 'package:rawg_flutter/core/network/model/parent_platform.dart';
 import 'package:rawg_flutter/utils/widget/loading_indicator.dart';
 
@@ -129,7 +130,47 @@ class HomeScreen extends StatelessWidget {
                           margin:
                               EdgeInsets.symmetric(vertical: 0, horizontal: 16),
                           child: Divider(color: Colors.grey),
-                        )
+                        ),
+                        Container(
+                          height: 15,
+                          margin: EdgeInsets.only(left: 16, right: 16, top: 8),
+                          child: Row(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: <Widget>[
+                              Text(
+                                'Genres : ',
+                                style: TextStyle(
+                                  fontSize: 13,
+                                  color: Colors.grey,
+                                ),
+                              ),
+                              Spacer(),
+                              ListView.builder(
+                                  itemCount: games.genres.length,
+                                  scrollDirection: Axis.horizontal,
+                                  shrinkWrap: true,
+                                  itemBuilder:
+                                      (BuildContext context, int index) {
+                                    Genres genres = games.genres[index];
+                                    String name = genres.name + ",";
+                                    if (index == games.genres.length - 1) {
+                                      name = genres.name;
+                                    }
+                                    return Container(
+                                      margin: EdgeInsets.all(1),
+                                      child: Text(
+                                        name,
+                                        style: TextStyle(fontSize: 13),
+                                      ),
+                                    );
+                                  })
+                            ],
+                          ),
+                        ),
+                        Container(
+                          margin: EdgeInsets.symmetric(horizontal: 16),
+                          child: Divider(color: Colors.grey),
+                        ),
                       ],
                     ),
                   );
