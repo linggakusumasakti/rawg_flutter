@@ -30,6 +30,9 @@ flutter:
     - family: Roboto
       fonts:
         - asset: assets/fonts/Roboto-Black.ttf
+        - asset: assets/fonts/Roboto-Thin.ttf
+        - asset: assets/fonts/Roboto-Bold.ttf
+        - asset: assets/fonts/Roboto-BoldItalic.ttf
 
   assets:
     - images/

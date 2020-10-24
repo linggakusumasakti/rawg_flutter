@@ -1,4 +1,5 @@
 import 'package:flutter/cupertino.dart';
+import 'package:rawg_flutter/core/network/model/games.dart';
 import 'package:rawg_flutter/core/network/model/results.dart';
 import 'package:rawg_flutter/core/network/repository/remote/api_repository.dart';
 import 'package:rawg_flutter/core/network/repository/repository.dart';
@@ -18,5 +19,10 @@ class GamesRepository implements Repository {
   @override
   Future<Result> getGames() async {
     return await apiRepository.getGames();
+  }
+
+  @override
+  Future<Games> getDetailGames(int id) async {
+    return await apiRepository.getDetailGames(id);
   }
 }

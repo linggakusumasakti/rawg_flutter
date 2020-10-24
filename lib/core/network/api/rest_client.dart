@@ -1,4 +1,5 @@
 import 'package:dio/dio.dart' hide Headers;
+import 'package:rawg_flutter/core/network/model/games.dart';
 import 'package:rawg_flutter/core/network/model/results.dart';
 import 'package:retrofit/retrofit.dart';
 
@@ -12,4 +13,7 @@ abstract class RestClient {
 
   @GET("games")
   Future<Result> getGames();
+
+  @GET("games/{id}")
+  Future<Games> getDetailGame(@Path("id") int id);
 }

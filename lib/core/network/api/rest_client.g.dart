@@ -32,4 +32,22 @@ class _RestClient implements RestClient {
     final value = Result.fromJson(_result.data);
     return value;
   }
+
+  @override
+  Future<Games> getDetailGame(id) async {
+    ArgumentError.checkNotNull(id, 'id');
+    const _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{};
+    final _data = <String, dynamic>{};
+    final _result = await _dio.request<Map<String, dynamic>>('games/$id',
+        queryParameters: queryParameters,
+        options: RequestOptions(
+            method: 'GET',
+            headers: <String, dynamic>{},
+            extra: _extra,
+            baseUrl: baseUrl),
+        data: _data);
+    final value = Games.fromJson(_result.data);
+    return value;
+  }
 }
