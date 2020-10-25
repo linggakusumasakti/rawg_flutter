@@ -19,7 +19,10 @@ class HomeScreen extends StatelessWidget {
     return Scaffold(
         backgroundColor: Colors.black,
         appBar: AppBar(
-          title: Text('Games', style: TextStyle(fontFamily: 'Roboto-Bold'),),
+          title: Text(
+            'Games',
+            style: TextStyle(fontFamily: 'Roboto-Bold'),
+          ),
         ),
         body: BlocBuilder<GamesBloc, GamesState>(builder: (context, state) {
           if (state is GamesHasData) {
@@ -106,8 +109,10 @@ class HomeScreen extends StatelessWidget {
                                     maxLines: 1,
                                     textAlign: TextAlign.start,
                                     style: TextStyle(
-                                        fontFamily: 'Roboto-Bold',
-                                        fontSize: 20,),
+                                      fontFamily: 'Roboto-Bold',
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: 20,
+                                    ),
                                   ),
                                 ),
                               ],
@@ -129,8 +134,8 @@ class HomeScreen extends StatelessWidget {
                                 Spacer(),
                                 Text(games.getDate(),
                                     style: TextStyle(
-                                      fontSize: 13,
-                                    ))
+                                        fontSize: 13,
+                                        fontFamily: 'Roboto-Black'))
                               ],
                             ),
                           ),
@@ -169,7 +174,9 @@ class HomeScreen extends StatelessWidget {
                                         margin: EdgeInsets.all(1),
                                         child: Text(
                                           name,
-                                          style: TextStyle(fontSize: 13),
+                                          style: TextStyle(
+                                              fontSize: 13,
+                                              fontFamily: 'Roboto-Black'),
                                         ),
                                       );
                                     })

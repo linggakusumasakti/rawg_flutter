@@ -9,11 +9,11 @@ class Genres extends Equatable {
   final int id;
 
   @JsonKey(name: 'name')
-   String name;
+  final String name;
 
   Genres(this.id, this.name);
 
-  String getName(){
+  String getName() {
     return "$name,";
   }
 

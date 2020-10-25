@@ -3,6 +3,8 @@ import 'package:intl/intl.dart';
 import 'package:json_annotation/json_annotation.dart';
 import 'package:rawg_flutter/core/network/model/genres.dart';
 import 'package:rawg_flutter/core/network/model/parent_platform.dart';
+import 'package:rawg_flutter/core/network/model/ratings.dart';
+import 'package:rawg_flutter/core/network/model/short_screenshots.dart';
 
 part 'games.g.dart';
 
@@ -29,14 +31,32 @@ class Games extends Equatable {
   @JsonKey(name: 'genres')
   final List<Genres> genres;
 
+  @JsonKey(name: 'short_screenshots')
+  final List<ShortScreenShots> shortScreenshots;
+
+  @JsonKey(name: 'ratings')
+  final List<Ratings> ratings;
+
+  @JsonKey(name: 'ratings_count')
+  final int ratingsCount;
+
   String getDate() {
     DateFormat dateFormat = DateFormat('MMM dd, yyyy');
     DateTime dateTime = DateTime.parse(released);
     return dateFormat.format(dateTime);
   }
 
-  Games(this.id, this.name, this.backgroundImage, this.metacritic,
-      this.parentPlatform, this.released, this.genres);
+  Games(
+      this.id,
+      this.name,
+      this.backgroundImage,
+      this.metacritic,
+      this.parentPlatform,
+      this.released,
+      this.genres,
+      this.shortScreenshots,
+      this.ratings,
+      this.ratingsCount);
 
   @override
   List<Object> get props => [id, name, backgroundImage];

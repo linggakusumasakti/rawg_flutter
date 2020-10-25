@@ -1,10 +1,12 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:rawg_flutter/core/bloc/detailgames/bloc.dart';
-import 'package:rawg_flutter/core/network/model/games.dart';
 import 'package:rawg_flutter/core/network/model/parent_platform.dart';
+import 'package:rawg_flutter/core/network/model/short_screenshots.dart';
 import 'package:rawg_flutter/utils/common/screen_arguments.dart';
+import 'package:rawg_flutter/utils/widget/linear_progress.dart';
 import 'package:rawg_flutter/utils/widget/loading_indicator.dart';
 
 class DetailGameScreen extends StatelessWidget {
@@ -19,7 +21,6 @@ class DetailGameScreen extends StatelessWidget {
         body: BlocBuilder<DetailGameBloc, DetailGameState>(
             builder: (context, state) {
           if (state is DetailGameHasData) {
-            Games games = state.games;
             return SingleChildScrollView(
               child: Stack(
                 alignment: Alignment.topCenter,
@@ -30,7 +31,7 @@ class DetailGameScreen extends StatelessWidget {
                         color: Colors.transparent,
                         image: DecorationImage(
                             fit: BoxFit.fill,
-                            image: NetworkImage(games.backgroundImage))),
+                            image: NetworkImage(args.games.backgroundImage))),
                   ),
                   Container(
                     height: MediaQuery.of(context).size.height * 0.4,
@@ -78,7 +79,7 @@ class DetailGameScreen extends StatelessWidget {
                               padding: EdgeInsets.symmetric(
                                   vertical: 2, horizontal: 8),
                               child: Text(
-                                games.getDate(),
+                                args.games.getDate(),
                                 style: TextStyle(
                                     fontFamily: 'Roboto-Thin',
                                     color: Colors.black),
@@ -90,11 +91,11 @@ class DetailGameScreen extends StatelessWidget {
                               child: ListView.builder(
                                   scrollDirection: Axis.horizontal,
                                   shrinkWrap: true,
-                                  itemCount: games.parentPlatform.length,
+                                  itemCount: args.games.parentPlatform.length,
                                   itemBuilder:
                                       (BuildContext context, int index) {
                                     ParentPlatform parentPlatform =
-                                        games.parentPlatform[index];
+                                        args.games.parentPlatform[index];
                                     return Container(
                                         margin: EdgeInsets.symmetric(
                                             vertical: 0, horizontal: 2),
@@ -108,11 +109,34 @@ class DetailGameScreen extends StatelessWidget {
                         ),
                       ),
                       Container(
-                        child: Text(games.name,
+                        child: Text(args.games.name,
                             style: TextStyle(
-                                fontFamily: 'Roboto-Bold',
-                                fontSize: 20,)),
-                      )
+                              fontFamily: 'Roboto-Bold',
+                              fontWeight: FontWeight.bold,
+                              fontSize: 20,
+                            )),
+                      ),
+                      Container(
+                        height: MediaQuery.of(context).size.height * 0.2,
+                        margin: EdgeInsets.all(8),
+                        child: ListView.builder(
+                            itemCount: args.games.shortScreenshots.length,
+                            scrollDirection: Axis.horizontal,
+                            itemBuilder: (BuildContext context, int index) {
+                              ShortScreenShots shortScreenshots =
+                                  args.games.shortScreenshots[index];
+                              return Container(
+                                  margin: EdgeInsets.symmetric(horizontal: 4),
+                                  child: ClipRRect(
+                                    borderRadius:
+                                        BorderRadius.all(Radius.circular(10)),
+                                    child: CachedNetworkImage(
+                                        imageUrl:
+                                            shortScreenshots.getImageView()),
+                                  ));
+                            }),
+                      ),
+                      LinearProgress(percent: 50.0,)
                     ],
                   )
                 ],
