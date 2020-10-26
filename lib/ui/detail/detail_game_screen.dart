@@ -3,9 +3,11 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:rawg_flutter/core/bloc/detailgames/bloc.dart';
+import 'package:rawg_flutter/core/network/model/games.dart';
 import 'package:rawg_flutter/core/network/model/parent_platform.dart';
 import 'package:rawg_flutter/core/network/model/short_screenshots.dart';
 import 'package:rawg_flutter/utils/common/screen_arguments.dart';
+import 'package:rawg_flutter/utils/widget/expandable_text.dart';
 import 'package:rawg_flutter/utils/widget/linear_progress.dart';
 import 'package:rawg_flutter/utils/widget/loading_indicator.dart';
 
@@ -21,6 +23,8 @@ class DetailGameScreen extends StatelessWidget {
         body: BlocBuilder<DetailGameBloc, DetailGameState>(
             builder: (context, state) {
           if (state is DetailGameHasData) {
+            Games games = state.games;
+            String desc = games.parseHtmlString(games.description);
             return SingleChildScrollView(
               child: Stack(
                 alignment: Alignment.topCenter,
@@ -144,6 +148,7 @@ class DetailGameScreen extends StatelessWidget {
                             style: TextStyle(
                                 fontFamily: 'Roboto-Bold',
                                 color: Colors.white,
+                                fontWeight: FontWeight.bold,
                                 fontSize: 18)),
                       ),
                       Container(
@@ -235,7 +240,25 @@ class DetailGameScreen extends StatelessWidget {
                             ),
                           ],
                         ),
-                      )
+                      ),
+                      Container(
+                        margin: EdgeInsets.only(top: 8, left: 8, right: 8),
+                        alignment: Alignment.topLeft,
+                        child: Text('About',
+                            style: TextStyle(
+                                fontFamily: 'Roboto-Bold',
+                                color: Colors.white,
+                                fontWeight: FontWeight.bold,
+                                fontSize: 18)),
+                      ),
+                      Container(
+                          alignment: Alignment.topLeft,
+                          margin:
+                              EdgeInsets.symmetric(vertical: 4, horizontal: 8),
+                          child: ExpandableText(
+                            desc,
+                            trimLines: 8,
+                          ))
                     ],
                   )
                 ],
