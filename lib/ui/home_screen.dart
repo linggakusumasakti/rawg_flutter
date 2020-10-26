@@ -91,6 +91,7 @@ class HomeScreen extends StatelessWidget {
                                       style: TextStyle(
                                           fontFamily: 'Roboto-Bold',
                                           fontSize: 16,
+                                          fontWeight: FontWeight.bold,
                                           color: Colors.green),
                                     ),
                                   )

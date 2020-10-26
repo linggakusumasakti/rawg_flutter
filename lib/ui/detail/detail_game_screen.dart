@@ -136,7 +136,106 @@ class DetailGameScreen extends StatelessWidget {
                                   ));
                             }),
                       ),
-                      LinearProgress(percent: 50.0,)
+                      Container(
+                        margin:
+                            EdgeInsets.symmetric(vertical: 4, horizontal: 8),
+                        alignment: Alignment.topLeft,
+                        child: Text('Rating Bar',
+                            style: TextStyle(
+                                fontFamily: 'Roboto-Bold',
+                                color: Colors.white,
+                                fontSize: 18)),
+                      ),
+                      Container(
+                        height: 40,
+                        alignment: Alignment.center,
+                        margin:
+                            EdgeInsets.symmetric(horizontal: 4, vertical: 4),
+                        child: ListView.builder(
+                            itemCount: 1,
+                            scrollDirection: Axis.horizontal,
+                            itemBuilder: (BuildContext context, int index) {
+                              return Container(
+                                  margin: EdgeInsets.symmetric(horizontal: 4),
+                                  child: ClipRRect(
+                                      borderRadius:
+                                          BorderRadius.all(Radius.circular(10)),
+                                      child: MyAssetsBar(
+                                        width:
+                                            MediaQuery.of(context).size.width *
+                                                .9,
+                                        background: Colors.red,
+                                        assetsLimit: 100.9,
+                                        assets: args.games.ratings,
+                                      )));
+                            }),
+                      ),
+                      Container(
+                        margin: EdgeInsets.all(4),
+                        child: Row(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          children: <Widget>[
+                            Icon(
+                              Icons.adjust_sharp,
+                              color: Colors.green,
+                            ),
+                            Container(
+                              margin:
+                                  EdgeInsets.only(top: 4, right: 16, left: 4),
+                              child: Text("Exceptional",
+                                  style: TextStyle(
+                                      fontFamily: 'Roboto-Bold',
+                                      fontWeight: FontWeight.bold)),
+                            ),
+                            Icon(
+                              Icons.adjust_sharp,
+                              color: Colors.blue,
+                            ),
+                            Container(
+                              margin:
+                                  EdgeInsets.only(top: 4, right: 16, left: 4),
+                              child: Text("Recommended",
+                                  style: TextStyle(
+                                      fontFamily: 'Roboto-Bold',
+                                      fontWeight: FontWeight.bold)),
+                            ),
+                          ],
+                        ),
+                      ),
+                      Container(
+                        margin: EdgeInsets.all(4),
+                        child: Row(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          children: <Widget>[
+                            Icon(
+                              Icons.adjust_sharp,
+                              color: Colors.orange,
+                            ),
+                            Container(
+                              margin:
+                                  EdgeInsets.only(top: 4, right: 16, left: 4),
+                              child: Text("Meh",
+                                  style: TextStyle(
+                                      fontFamily: 'Roboto-Bold',
+                                      fontWeight: FontWeight.bold)),
+                            ),
+                            Icon(
+                              Icons.adjust_sharp,
+                              color: Colors.red,
+                            ),
+                            Container(
+                              margin:
+                                  EdgeInsets.only(top: 4, right: 16, left: 4),
+                              child: Text("Skip",
+                                  style: TextStyle(
+                                      fontFamily: 'Roboto-Bold',
+                                      fontWeight: FontWeight.bold)),
+                            ),
+                          ],
+                        ),
+                      )
                     ],
                   )
                 ],
