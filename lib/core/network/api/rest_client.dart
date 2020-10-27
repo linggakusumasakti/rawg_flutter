@@ -16,4 +16,7 @@ abstract class RestClient {
 
   @GET("games/{id}")
   Future<Games> getDetailGame(@Path("id") int id);
+
+  @GET("games/{id}/suggested")
+  Future<Result> getSuggestedGames(@Path("id") int id);
 }

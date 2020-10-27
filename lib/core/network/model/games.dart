@@ -1,5 +1,4 @@
 import 'package:equatable/equatable.dart';
-import 'package:html/parser.dart';
 import 'package:intl/intl.dart';
 import 'package:json_annotation/json_annotation.dart';
 import 'package:rawg_flutter/core/network/model/genres.dart';
@@ -44,18 +43,13 @@ class Games extends Equatable {
   @JsonKey(name: 'description')
   final String description;
 
+  @JsonKey(name: 'description_raw')
+  final String descriptionRaw;
+
   String getDate() {
     DateFormat dateFormat = DateFormat('MMM dd, yyyy');
     DateTime dateTime = DateTime.parse(released);
     return dateFormat.format(dateTime);
-  }
-
-  String parseHtmlString(String htmlString) {
-    final document = parse(htmlString);
-    final String parsedString =
-        parse(document.body.text).documentElement.text;
-
-    return parsedString;
   }
 
   Games(
@@ -69,7 +63,8 @@ class Games extends Equatable {
       this.shortScreenshots,
       this.ratings,
       this.ratingsCount,
-      this.description);
+      this.description,
+      this.descriptionRaw);
 
   @override
   List<Object> get props => [id, name, backgroundImage];

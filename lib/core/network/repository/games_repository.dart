@@ -25,4 +25,9 @@ class GamesRepository implements Repository {
   Future<Games> getDetailGames(int id) async {
     return await apiRepository.getDetailGames(id);
   }
+
+  @override
+  Future<Result> getSuggestedGames(int id) async {
+    return await apiRepository.getSuggestedGames(id);
+  }
 }

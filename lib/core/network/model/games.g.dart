@@ -33,6 +33,7 @@ Games _$GamesFromJson(Map<String, dynamic> json) {
         ?.toList(),
     json['ratings_count'] as int,
     json['description'] as String,
+    json['description_raw'] as String,
   );
 }
 
@@ -48,4 +49,5 @@ Map<String, dynamic> _$GamesToJson(Games instance) => <String, dynamic>{
       'ratings': instance.ratings,
       'ratings_count': instance.ratingsCount,
       'description': instance.description,
+      'description_raw': instance.descriptionRaw,
     };

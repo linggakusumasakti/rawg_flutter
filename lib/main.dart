@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:rawg_flutter/core/bloc/detailgames/bloc.dart';
+import 'package:rawg_flutter/core/bloc/suggested/bloc.dart';
 import 'package:rawg_flutter/ui/detail/detail_game_screen.dart';
 import 'package:rawg_flutter/ui/home_screen.dart';
 
@@ -21,7 +22,10 @@ class MyApp extends StatelessWidget {
         ),
         BlocProvider<DetailGameBloc>(
           create: (context) => DetailGameBloc(repository: GamesRepository()),
-        )
+        ),
+        BlocProvider<SuggestedGamesBloc>(
+            create: (context) =>
+                SuggestedGamesBloc(repository: GamesRepository()))
       ],
       child: MaterialApp(
         title: 'Games',

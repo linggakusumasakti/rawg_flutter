@@ -25,4 +25,9 @@ class ApiRepository implements Repository {
   Future<Games> getDetailGames(int id) {
     return _restClient.getDetailGame(id);
   }
+
+  @override
+  Future<Result> getSuggestedGames(int id) {
+    return _restClient.getSuggestedGames(id);
+  }
 }
