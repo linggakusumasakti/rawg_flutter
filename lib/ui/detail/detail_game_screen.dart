@@ -22,6 +22,15 @@ class DetailGameScreen extends StatelessWidget {
     final ScreenArguments args = ModalRoute.of(context).settings.arguments;
     context.bloc<DetailGameBloc>().add(LoadDetailGame(args.games.id));
     context.bloc<SuggestedGamesBloc>().add(LoadSuggestedGame(args.games.id));
+
+    double getTotalPercent() {
+      double total = 0;
+      for (int i = 0; i < args.games.ratings.length; i++) {
+        total += args.games.ratings[i].percent;
+      }
+      return total;
+    }
+
     return Scaffold(
         backgroundColor: Colors.black,
         body: SingleChildScrollView(
@@ -188,7 +197,7 @@ class DetailGameScreen extends StatelessWidget {
                                                         .width *
                                                     .9,
                                                 background: Colors.red,
-                                                assetsLimit: 100.9,
+                                                assetsLimit: getTotalPercent(),
                                                 assets: args.games.ratings,
                                               )));
                                     }),
@@ -331,13 +340,20 @@ class DetailGameScreen extends StatelessWidget {
                         itemCount: state.result.results.length,
                         itemBuilder: (BuildContext context, int index) {
                           Games game = state.result.results[index];
-                          return CardGames(
-                            name: game.name,
-                            image: game.backgroundImage,
-                            platform: game.parentPlatform,
-                            metacritic: game.metacritic,
-                            date: game.getDate(),
-                            genres: game.genres,
+                          return InkWell(
+                            onTap: () {
+                              Navigator.pushNamed(
+                                  context, DetailGameScreen.routeName,
+                                  arguments: ScreenArguments(game));
+                            },
+                            child: CardGames(
+                              name: game.name,
+                              image: game.backgroundImage,
+                              platform: game.parentPlatform,
+                              metacritic: game.metacritic,
+                              date: game.getDate(),
+                              genres: game.genres,
+                            ),
                           );
                         });
                   } else {
