@@ -47,9 +47,14 @@ class Games extends Equatable {
   final String descriptionRaw;
 
   String getDate() {
-    DateFormat dateFormat = DateFormat('MMM dd, yyyy');
-    DateTime dateTime = DateTime.parse(released);
-    return dateFormat.format(dateTime);
+    String date = "";
+    if (released != null) {
+      DateFormat dateFormat = DateFormat('MMM dd, yyyy');
+      DateTime dateTime = DateTime.parse(released);
+      date = dateFormat.format(dateTime);
+    } else
+      date = "-";
+    return date;
   }
 
   Games(

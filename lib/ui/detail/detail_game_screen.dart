@@ -296,10 +296,7 @@ class DetailGameScreen extends StatelessWidget {
                   }
                 }),
               ),
-              Container(
-                child: _buildSuggestedGames(
-                    context, args.games.id, args.games.name),
-              )
+              _buildSuggestedGames(context, args.games.id, args.games.name),
             ],
           ),
         ));
@@ -323,7 +320,7 @@ class DetailGameScreen extends StatelessWidget {
           Container(
               margin: EdgeInsets.only(top: 4),
               width: Sizes.width(context),
-              height: Sizes.width(context),
+              height: Sizes.height(context) * .6,
               child: BlocBuilder<SuggestedGamesBloc, SuggestedGamesState>(
                 builder: (context, state) {
                   if (state is SuggestedGameHasData) {
@@ -340,6 +337,7 @@ class DetailGameScreen extends StatelessWidget {
                             platform: game.parentPlatform,
                             metacritic: game.metacritic,
                             date: game.getDate(),
+                            genres: game.genres,
                           );
                         });
                   } else {
