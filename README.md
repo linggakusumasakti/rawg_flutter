@@ -21,6 +21,7 @@ Application build with Flutter, use RAWG API
 License
 -------
 
+
 ```
 MIT License
 
